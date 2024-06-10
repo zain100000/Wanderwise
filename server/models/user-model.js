@@ -36,6 +36,11 @@ const userSchema = new mongoose.Schema({
     required: true,
   },
 
+  travelPreferences: {
+    type: String,
+    required: true,
+  },
+
   friendlist: [
     {
       type: mongoose.Schema.Types.ObjectId,
