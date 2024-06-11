@@ -22,6 +22,8 @@ app.use((req, res, next) => {
 });
 
 // ROUTES
+const userRoutes = require('./routes/user-routes'); // Import the user routes
+app.use('/api/users', userRoutes); // Register the user routes with a base path of /api/users
 
 mongoose
   .connect(process.env.MONGODB_URI)
