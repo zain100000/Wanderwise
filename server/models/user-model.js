@@ -38,7 +38,6 @@ const userSchema = new mongoose.Schema({
 
   travelPreferences: {
     type: String,
-    required: true,
   },
 
   friendlist: [
