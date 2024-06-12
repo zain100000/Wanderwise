@@ -15,6 +15,9 @@ router.put(
   profileImageUpload.upload,
   userController.updateUser
 );
+
+router.post("/reset-password", userController.resetPassword);
+
 router.delete("/removeUser/:id", authMiddleware, userController.deleteUser);
 
 module.exports = router;

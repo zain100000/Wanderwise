@@ -197,6 +197,32 @@ const updateUser = async (req, res, next) => {
   }
 };
 
+// Reset Password
+const resetPassword = async (req, res, next) => {
+  const { email, newPassword } = req.body;
+
+  try {
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      const error = new HttpError("User Not Found!", 404);
+      return next(error);
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.password = hashedPassword;
+
+    await user.save();
+
+    res.status(200).json({ message: "Password Reset Successfully!" });
+  } catch (err) {
+    const error = new HttpError("Error Resetting Password!", 500);
+    return next(error);
+  }
+};
+
 // Delete a user
 const deleteUser = async (req, res, next) => {
   const userId = req.params.id;
@@ -247,5 +273,6 @@ module.exports = {
   getUsers,
   getUserById,
   updateUser,
+  resetPassword,
   deleteUser,
 };
