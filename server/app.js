@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/user-routes");
+const friendRoutes = require("./routes/friend-routes");
 
 require("dotenv").config();
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 
 // ROUTES
 app.use("/api/users", userRoutes);
+app.use("/api/friends", friendRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URI)
