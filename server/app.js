@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const userRoutes = require("./routes/user-routes");
 const friendRoutes = require("./routes/friend-routes");
+const groupsRoutes = require("./routes/group-routes");
 
 require("dotenv").config();
 
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 // ROUTES
 app.use("/api/users", userRoutes);
 app.use("/api/friends", friendRoutes);
+app.use("/api/groups", groupsRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URI)
